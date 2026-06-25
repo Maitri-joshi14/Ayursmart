@@ -1,0 +1,2 @@
+# Ayursmart
+Ayurvedic_clinic_management_system
