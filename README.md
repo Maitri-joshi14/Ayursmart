@@ -5,23 +5,31 @@ A full-stack clinic management system built as a final year engineering project.
 ---
 
 ## 🏗️ Project Structure
-
-\`\`\`
 ayursmart/
-├── backend1/          # Flask REST API
-│   ├── app.py         # Main application
-│   ├── requirements.txt
-│   └── Dockerfile
-├── frontend1/         # Static HTML/CSS/JS
-│   ├── index.html
-│   ├── dashboard.html
-│   └── Dockerfile
-├── docker-compose.yml
-└── .github/
-    └── workflows/
-        └── ci.yml
-\`\`\`
 
+├── backend1/           # Flask REST API
+
+│   ├── app.py          # Main application
+
+│   ├── requirements.txt
+
+│   └── Dockerfile
+
+├── frontend1/          # Static HTML/CSS/JS
+
+│   ├── index.html
+
+│   ├── dashboard.html
+
+│   └── Dockerfile
+
+├── docker-compose.yml
+
+└── .github/
+
+└── workflows/
+
+└── ci.yml
 ## ⚙️ Tech Stack
 
 | Layer | Technology |
@@ -41,9 +49,9 @@ ayursmart/
 - WSL2 (Windows)
 
 ### Start all services
-\`\`\`bash
+```bash
 docker compose up --build
-\`\`\`
+```
 
 ### Access the app
 | Service | URL |
@@ -53,9 +61,9 @@ docker compose up --build
 | MySQL | localhost:3307 |
 
 ### Stop all services
-\`\`\`bash
+```bash
 docker compose down
-\`\`\`
+```
 
 ---
 
@@ -72,7 +80,7 @@ docker compose down
 
 ## 🔄 CI/CD Pipeline
 
-On every push to \`master\`, GitHub Actions:
+On every push to `master`, GitHub Actions:
 1. Installs Python dependencies
 2. Lints with flake8
 3. Builds Docker images
