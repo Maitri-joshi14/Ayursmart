@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables (sensitive!)
+.env
+
+# Database files
+*.db
+
+# Windows
+*.bat
+

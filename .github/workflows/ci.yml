@@ -1,0 +1,58 @@
+name: AyurSmart CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r backend1/requirements.txt
+
+      - name: Lint with flake8
+        run: |
+          pip install flake8
+          flake8 backend1/app.py --max-line-length=120 --ignore=E501,W503 || true
+
+      - name: Build Docker images
+        run: |
+          docker compose build
+
+      - name: Start services
+        run: |
+          docker compose up -d
+
+      - name: Wait for backend to be ready
+        run: |
+          echo "Waiting for backend..."
+          for i in {1..15}; do
+            if curl -s http://localhost:5100/api/doctors > /dev/null; then
+              echo "Backend is up!"
+              break
+            fi
+            echo "Attempt $i - waiting..."
+            sleep 5
+          done
+
+      - name: Health check
+        run: |
+          curl -f http://localhost:5100/api/doctors
+          curl -f http://localhost:8080
+
+      - name: Tear down
+        if: always()
+        run: docker compose down
